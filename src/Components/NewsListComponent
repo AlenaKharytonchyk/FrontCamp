@@ -1,0 +1,5 @@
+import template from './NewListTemplate.html';
+
+export default class NewsListComponent {
+
+};

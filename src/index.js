@@ -2,9 +2,7 @@
 const fetch = require('node-fetch');
 
 // console.log(process.env.MY_API_KEY);
-const url = 'https://newsapi.org/v2/top-headlines?'
-  + 'country=us&'
-  + 'apiKey=1d8434c04862439692cc773aa6bfc026';
+const url = 'https://newsapi.org/v2/sources?apiKey=1d8434c04862439692cc773aa6bfc026';
 
 
 const promise = fetch(Channel.url)
