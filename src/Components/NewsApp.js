@@ -18,22 +18,18 @@ export default class NewsApp {
 
   setSource(source) {
     this.source = source;
-    console.log('New Source:', source);
-
     this.render();
   }
 
   async getSources() {
     const response = await fetch(this.sourcesUrl);
     const data = await response.json();
-    console.log(data);
     this.sources = data.sources.map((source) => ({ id: source.id, name: source.name }));
   }
 
   async getNews() {
     const responce = await fetch(this.newUrl);
     const data = await responce.json();
-    console.log('news', data);
     this.news = data.articles;
   }
 
@@ -42,16 +38,20 @@ export default class NewsApp {
     const newsContainer = document.querySelector('.app .news-container');
     const backBtn = buttonsContainer.querySelector('.back-btn');
 
-    if (!this.sources) {
-      await this.getSources();
+    if (!this.source) {
       buttonsContainer.classList.remove('display-news');
-      this.sources.forEach((source) => {
-        buttonsContainer.append(Button(source, () => this.setSource(source.id)));
-      });
+      newsContainer.style.display = 'none';
       newsContainer.innerHTML = '';
+      if (!this.sources) {
+        await this.getSources();
+        this.sources.forEach((source) => {
+          buttonsContainer.append(Button(source, () => this.setSource(source.id)));
+        });
+      }
     } else {
       await this.getNews();
       buttonsContainer.classList.add('display-news');
+      newsContainer.style.display = 'flex';
       backBtn.addEventListener('click', () => this.setSource(null));
       this.news.forEach((newsInfo) => {
         newsContainer.append(NewsCard(newsInfo));
@@ -59,5 +59,3 @@ export default class NewsApp {
     }
   }
 }
-
-// export { NewsApp, template };

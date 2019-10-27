@@ -1,0 +1,101 @@
+$element-top-margin: 5px;
+$element-bottom-margin: 5px;
+$card-bg-color: #fff;
+$card-padding: 15px;
+$card-link-color: #ffd8a6;
+$card-link-color-dark: darken(#ffd8a6, 30%);
+
+.card {
+  position: relative;
+  margin: 25px;
+  background-color: $card-bg-color;
+  transition: box-shadow .25s;
+  border-radius: 2px;
+  border: 1px solid $card-link-color;
+  height: 100%;
+  width: 400px;
+  list-style: none;
+
+  .card-title {
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+    .card-image {
+      max-height: 60%;
+      overflow: hidden;
+    }
+    .card-image + .card-content {
+      max-height: 40%;
+    }
+    .card-content {
+      //max-height: 100%;
+      overflow: hidden;
+    }
+    .card-action {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  .card-image {
+    position: relative;
+
+    img {
+      display: block;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .card-title {
+      color: $card-bg-color;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      max-width: 100%;
+      padding: $card-padding;
+    }
+  }
+
+  .card-content {
+    padding: $card-padding;
+    border-radius: 0 0 2px 2px;
+
+    p {
+      margin: 0;
+    }
+    .card-title {
+      display: block;
+      line-height: 32px;
+      margin-bottom: 8px;
+
+      i {
+        line-height: 32px;
+      }
+    }
+  }
+
+  .card-action {
+    &:last-child {
+      border-radius: 0 0 2px 2px;
+    }
+    background-color: inherit;
+    border-top: 1px solid rgba(160,160,160,.2);
+    position: relative;
+    padding: 16px $card-padding;
+
+    a:not(.btn):not(.btn-large):not(.btn-floating) {
+      color: $card-link-color;
+      margin-right: $card-padding;
+      transition: color .3s ease;
+      text-transform: uppercase;
+
+      &:hover { color: $card-link-color-dark; }
+    }
+  }
+}
