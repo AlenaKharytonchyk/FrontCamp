@@ -1,9 +1,15 @@
-const template = '<div class="news-container"><ul class="buttons-container"></ul><ul class="news-container"></ul></div>';
+import Button from './Button';
+import NewsCard from './NewsCard';
+import './newsApp.scss';
+
+const template = '<div class="app-container"><ul class="buttons-container"><li class="back-btn">Back</li></ul><ul class="news-container"></ul></div>';
 const newsUrlTemplate = 'https://newsapi.org/v2/top-headlines?sources={{SOURCES}}&apiKey=1d8434c04862439692cc773aa6bfc026';
 
 export default class NewsApp {
   constructor() {
     this.sourcesUrl = 'https://newsapi.org/v2/sources?apiKey=1d8434c04862439692cc773aa6bfc026';
+    const mainContainer = document.querySelector('.app');
+    mainContainer.innerHTML = template;
   }
 
   get newUrl() {
@@ -32,30 +38,23 @@ export default class NewsApp {
   }
 
   async render() {
+    const buttonsContainer = document.querySelector('.app .buttons-container');
+    const newsContainer = document.querySelector('.app .news-container');
+    const backBtn = buttonsContainer.querySelector('.back-btn');
+
     if (!this.sources) {
       await this.getSources();
-
-      const mainContainer = document.querySelector('.app');
-      mainContainer.innerHTML = template;
-
-      const list = mainContainer.querySelector('.buttons-container');
+      buttonsContainer.classList.remove('display-news');
       this.sources.forEach((source) => {
-        const li = document.createElement('li');
-        li.addEventListener('click', () => this.setSource(source.id));
-        li.innerHTML = source.name;
-        list.append(li);
+        buttonsContainer.append(Button(source, () => this.setSource(source.id)));
       });
+      newsContainer.innerHTML = '';
     } else {
       await this.getNews();
-
-      const buttonsContainer = document.querySelector('.app .buttons-container');
-      buttonsContainer.style.display = 'none';
-      const newsContainer = document.querySelector('.app .news-container');
+      buttonsContainer.classList.add('display-news');
+      backBtn.addEventListener('click', () => this.setSource(null));
       this.news.forEach((newsInfo) => {
-        const li = document.createElement('li');
-        li.className = 'news-card';
-        li.innerText = newsInfo.title;
-        newsContainer.append(li);
+        newsContainer.append(NewsCard(newsInfo));
       });
     }
   }

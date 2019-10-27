@@ -1,6 +1,6 @@
 // import 'dotenv/config';
 // const fetch = require('node-fetch');
-import NewsApp from './Components/newListComponent';
+import NewsApp from './Components/NewsApp';
 
 const app = new NewsApp();
 

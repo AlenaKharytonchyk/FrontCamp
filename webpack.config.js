@@ -1,7 +1,17 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: ['@babel/polyfill', './src/index.js'],
   module: {
     rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
       {
         test: /\.(jpg|png)$/,
         use: {
@@ -13,25 +23,28 @@ module.exports = {
         exclude: [/node_modules/],
 
         use: [{
-          loader: 'babel-loader'
+          loader: 'babel-loader',
         }, {
           loader: 'eslint-loader',
           options: {
-            fix: true
-          }
+            fix: true,
+          },
         }],
-      }
-    ]
+      },
+    ],
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ['*', '.js'],
   },
   output: {
-    path: __dirname + '/dist',
+    path: `${__dirname}/dist`,
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   devServer: {
-    contentBase: './dist'
-  }
+    contentBase: './dist',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({template: './src/index.html'}),
+  ],
 };
