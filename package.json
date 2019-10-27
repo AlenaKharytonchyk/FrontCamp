@@ -25,9 +25,10 @@
     "@babel/preset-env": "^7.6.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.1.0",
-    "eslint-config-airbnb": "^18.0.1",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.4",
     "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
@@ -35,6 +36,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0"
   }

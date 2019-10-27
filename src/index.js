@@ -1,12 +1,11 @@
 // import 'dotenv/config';
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
+import NewsApp from './Components/newListComponent';
 
-// console.log(process.env.MY_API_KEY);
-const url = 'https://newsapi.org/v2/sources?apiKey=1d8434c04862439692cc773aa6bfc026';
+const app = new NewsApp();
 
-
-const promise = fetch(Channel.url)
-  .then((response) => response.json())
-  .then((data) => console.log(data.articles))
-  .catch((error) => console.warn(error));
-console.log(promise);
+document.onreadystatechange = async function funcComplete() {
+  if (document.readyState === 'complete') {
+    await app.render();
+  }
+};
