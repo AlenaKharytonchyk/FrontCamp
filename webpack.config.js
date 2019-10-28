@@ -44,6 +44,9 @@ module.exports = {
   devServer: {
     contentBase: './dist',
   },
+  node: {
+    fs: 'empty',
+  },
   plugins: [
     new HtmlWebpackPlugin({template: './src/index.html'}),
   ],

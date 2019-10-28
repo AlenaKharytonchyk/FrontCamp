@@ -37,7 +37,8 @@ body {
         border-bottom: solid 2px #d84315;
       }
       &:active{
-        border-bottom: 4px solid white;
+        color: #d84315;
+        border-bottom: 2px solid white;
       }
       &::before{
         content: '<';

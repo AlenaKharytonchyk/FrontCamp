@@ -1,36 +1,19 @@
 import Button from '../button/Button';
 import NewsCard from '../newsCard/NewsCard';
 import './newsApp.scss';
+import NewsService from '../../api';
 
 const template = '<div class="app-container"><ul class="buttons-container"><li class="back-btn">Back</li></ul><ul class="news-container"></ul></div>';
-const newsUrlTemplate = 'https://newsapi.org/v2/top-headlines?sources={{SOURCES}}&apiKey=1d8434c04862439692cc773aa6bfc026';
 
 export default class NewsApp {
   constructor() {
-    this.sourcesUrl = 'https://newsapi.org/v2/sources?apiKey=1d8434c04862439692cc773aa6bfc026';
     const mainContainer = document.querySelector('.app');
     mainContainer.innerHTML = template;
-  }
-
-  get newUrl() {
-    return newsUrlTemplate.replace('{{SOURCES}}', this.source);
   }
 
   setSource(source) {
     this.source = source;
     this.render();
-  }
-
-  async getSources() {
-    const response = await fetch(this.sourcesUrl);
-    const data = await response.json();
-    this.sources = data.sources.map((source) => ({ id: source.id, name: source.name }));
-  }
-
-  async getNews() {
-    const responce = await fetch(this.newUrl);
-    const data = await responce.json();
-    this.news = data.articles;
   }
 
   async render() {
@@ -43,13 +26,13 @@ export default class NewsApp {
       newsContainer.style.display = 'none';
       newsContainer.innerHTML = '';
       if (!this.sources) {
-        await this.getSources();
+        this.sources = await NewsService.getSources();
         this.sources.forEach((source) => {
           buttonsContainer.append(Button(source, () => this.setSource(source.id)));
         });
       }
     } else {
-      await this.getNews();
+      this.news = await NewsService.getNews(this.source);
       buttonsContainer.classList.add('display-news');
       newsContainer.style.display = 'flex';
       backBtn.addEventListener('click', () => this.setSource(null));
