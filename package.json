@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "build": "webpack -conifg ./webpack.config.js --mode production",
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/AlenaKharytonchyk/FrontCamp/issues"
   },
-  "homepage": "https://github.com/AlenaKharytonchyk/FrontCamp#readme",
+  "homepage": "https://github.com/AlenaKharytonchyk/FrontCamp/",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/node": "^7.6.3",
@@ -43,6 +45,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
     "dotenv": "^8.2.0",
+    "gh-pages": "^2.1.1",
     "node-fetch": "^2.6.0"
   }
 }

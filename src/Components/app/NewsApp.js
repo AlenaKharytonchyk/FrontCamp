@@ -1,5 +1,5 @@
-import Button from './Button';
-import NewsCard from './NewsCard';
+import Button from '../button/Button';
+import NewsCard from '../newsCard/NewsCard';
 import './newsApp.scss';
 
 const template = '<div class="app-container"><ul class="buttons-container"><li class="back-btn">Back</li></ul><ul class="news-container"></ul></div>';

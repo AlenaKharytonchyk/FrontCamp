@@ -8,7 +8,7 @@ const templateForCard = ' <div class="card-image">'
   + '          <p>{{description}}</p>'
   + '        </div>'
   + '        <div class="card-action">'
-  + '          <a href="{{url}}">Open the news</a>'
+  + '          <a href="{{url}}" target="_blank">Open the news</a>'
   + '        </div>';
 
 export default function NewsCard(newsInfo) {

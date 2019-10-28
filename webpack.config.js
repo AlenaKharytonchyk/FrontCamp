@@ -38,7 +38,7 @@ module.exports = {
   },
   output: {
     path: `${__dirname}/dist`,
-    publicPath: '/',
+    publicPath: '/FrontCamp/',
     filename: 'bundle.js',
   },
   devServer: {

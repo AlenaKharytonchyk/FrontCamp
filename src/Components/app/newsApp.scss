@@ -5,7 +5,7 @@ body {
 .app-container {
   width: 100%;
   height: 100%;
-  background-color: darkgray;
+  background-color: #607d8b;
 }
 
 .buttons-container {
@@ -34,7 +34,7 @@ body {
       margin: 0.5em;
       text-align: center;
       &:hover{
-        border-bottom: solid 2px limegreen;
+        border-bottom: solid 2px #d84315;
       }
       &:active{
         border-bottom: 4px solid white;
