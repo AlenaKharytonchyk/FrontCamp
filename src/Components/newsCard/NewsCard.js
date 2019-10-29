@@ -1,5 +1,5 @@
 import './newsCard.scss';
-import constants from '../../constants';
+import placeholder from '../../assets/images/placeholder.jpg';
 
 const templateForCard = ' <div class="card-image">'
   + '          <img src="{{imgUrl}}" alt="{{title}}">'
@@ -18,6 +18,6 @@ export default function NewsCard(newsInfo) {
   li.innerHTML = templateForCard.replace('{{url}}', newsInfo.url)
     .replace(/{{title}}/g, newsInfo.title)
     .replace('{{description}}', newsInfo.description)
-    .replace('{{imgUrl}}', newsInfo.urlToImage || constants.imagePlaceholder);
+    .replace('{{imgUrl}}', newsInfo.urlToImage || placeholder);
   return li;
 }
