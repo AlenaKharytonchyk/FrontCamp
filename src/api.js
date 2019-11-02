@@ -3,6 +3,22 @@ import constants from './constants';
 const sourcesUrl = `https://newsapi.org/v2/sources?apiKey=${constants.MY_API_KEY}`;
 const newsUrlTemplate = `https://newsapi.org/v2/top-headlines?sources={{SOURCES}}&apiKey=${constants.MY_API_KEY}`;
 
+const monitor = (obj) => new Proxy(obj, {
+  get(target, propKey) {
+    const origMethod = target[propKey];
+    if (!origMethod) return null;
+    return (...args) => {
+      console.log(`Trying to ${propKey}`);
+      const result = origMethod.apply(this, args);
+      return result.then((out) => {
+        console.log(`${propKey} received ${out.length} records.`);
+        return out;
+      })
+        .catch((error) => console.warn('Failed to fetch data', error.message));
+    };
+  },
+});
+
 class NewsService {
   static async getSources() {
     const response = await fetch(sourcesUrl);
@@ -17,4 +33,4 @@ class NewsService {
   }
 }
 
-export default NewsService;
+export default monitor(NewsService);

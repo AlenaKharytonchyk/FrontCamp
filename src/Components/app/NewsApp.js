@@ -46,7 +46,7 @@ class NewsApp {
 }
 
 const NewsAppSingleton = (function () {
-  return NewsApp();
+  return new NewsApp();
 }());
 
 export default NewsAppSingleton;
