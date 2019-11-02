@@ -5,7 +5,7 @@ import NewsService from '../../api';
 
 const template = '<div class="app-container"><ul class="buttons-container"><li class="back-btn">Back</li></ul><ul class="news-container"></ul></div>';
 
-export default class NewsApp {
+class NewsApp {
   constructor() {
     const mainContainer = document.querySelector('.app');
     mainContainer.innerHTML = template;
@@ -25,12 +25,10 @@ export default class NewsApp {
       buttonsContainer.classList.remove('display-news');
       newsContainer.style.display = 'none';
       newsContainer.innerHTML = '';
-      if (!this.sources) {
-        this.sources = await NewsService.getSources();
-        this.sources.forEach((source) => {
-          buttonsContainer.append(Button(source, () => this.setSource(source.id)));
-        });
-      }
+      this.sources = await NewsService.getSources();
+      this.sources.forEach((source) => {
+        buttonsContainer.append(Button(source, () => this.setSource(source.id)));
+      });
     } else {
       this.news = await NewsService.getNews(this.source);
       buttonsContainer.classList.add('display-news');
@@ -42,3 +40,5 @@ export default class NewsApp {
     }
   }
 }
+
+export default NewsApp;
