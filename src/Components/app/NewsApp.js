@@ -17,6 +17,10 @@ class NewsApp {
   }
 
   async render() {
+    if (!document || !document.querySelector('.app')) {
+      return;
+    }
+
     const buttonsContainer = document.querySelector('.app .buttons-container');
     const newsContainer = document.querySelector('.app .news-container');
     const backBtn = buttonsContainer.querySelector('.back-btn');
