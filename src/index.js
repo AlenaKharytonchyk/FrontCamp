@@ -1,9 +1,7 @@
-import NewsApp from './Components/app/NewsApp';
-
-const app = new NewsApp();
+import NewsAppSingleton from './Components/app/NewsApp';
 
 document.onreadystatechange = async function funcComplete() {
   if (document.readyState === 'complete') {
-    await app.render();
+    await NewsAppSingleton.render();
   }
 };

@@ -45,4 +45,8 @@ class NewsApp {
   }
 }
 
-export default NewsApp;
+const NewsAppSingleton = (function () {
+  return NewsApp();
+}());
+
+export default NewsAppSingleton;
