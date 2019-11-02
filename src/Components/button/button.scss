@@ -1,0 +1,19 @@
+.source-btn {
+  width: 15em;
+  height: 3em;
+  border: solid 2px white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  margin: 0.5em;
+  &:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  &:active{
+    color: darkgray;
+    background-color: white;
+    border: 2px solid darkgray;
+  }
+}
