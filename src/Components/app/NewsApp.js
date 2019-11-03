@@ -30,10 +30,12 @@ class NewsApp {
       buttonsContainer.classList.remove('display-news');
       newsContainer.style.display = 'none';
       newsContainer.innerHTML = '';
-      this.sources = await NewsService.getSources();
-      this.sources.forEach((source) => {
-        buttonsContainer.append(Button(source, () => this.setSource(source.id)));
-      });
+      if (!this.sources) {
+        this.sources = await NewsService.getSources();
+        this.sources.forEach((source) => {
+          buttonsContainer.append(Button(source, () => this.setSource(source.id)));
+        });
+      }
     } else {
       this.news = await NewsService.getNews(this.source);
       buttonsContainer.classList.add('display-news');

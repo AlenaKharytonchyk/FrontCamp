@@ -69,4 +69,7 @@ module.exports = {
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     }),
   ],
+  stats: {
+    children: false,
+  },
 };

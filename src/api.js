@@ -1,5 +1,6 @@
 import constants from './constants';
-import placeholder from './assets/images/placeholder.jpg';
+import NewsFactory from './Services/NewsFactory';
+import SourceFactory from './Services/NewsSourceFactory';
 
 const sourcesUrl = `https://newsapi.org/v2/sources?apiKey=${constants.MY_API_KEY}`;
 const newsUrlTemplate = `https://newsapi.org/v2/top-headlines?sources={{SOURCES}}&apiKey=${constants.MY_API_KEY}`;
@@ -19,19 +20,6 @@ const monitor = (obj) => new Proxy(obj, {
     };
   },
 });
-
-const SourceFactory = {
-  makeSource: (source) => ({ id: source.id, name: source.name }),
-};
-
-const NewsFactory = {
-  makeNews: (articles) => ({
-    title: articles.title,
-    imgUrl: articles.urlToImage || placeholder,
-    url: articles.url,
-    description: articles.description,
-  }),
-};
 
 class NewsService {
   static async getSources() {
