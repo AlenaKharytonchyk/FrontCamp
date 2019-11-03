@@ -2,6 +2,7 @@ import Button from '../button/Button';
 import NewsCard from '../newsCard/NewsCard';
 import './newsApp.scss';
 import NewsService from '../../api';
+import LazyImageService from '../../Services/LazyImageService';
 
 const template = '<div class="app-container"><ul class="buttons-container"><li class="back-btn">Back</li></ul><ul class="news-container"></ul></div>';
 
@@ -41,6 +42,8 @@ class NewsApp {
       this.news.forEach((newsInfo) => {
         newsContainer.append(NewsCard(newsInfo));
       });
+
+      LazyImageService.initObserver(document.querySelectorAll('img.lazy'));
     }
   }
 }

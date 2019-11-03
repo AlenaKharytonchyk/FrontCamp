@@ -1,7 +1,7 @@
 import './newsCard.scss';
 
 const templateForCard = ' <div class="card-image">'
-  + '          <img src="{{imgUrl}}" alt="{{title}}">'
+  + '          <img class="lazy" data-src="{{imgUrl}}" alt="{{title}}">'
   + '          <span class="card-title">{{title}}</span>'
   + '        </div>'
   + '        <div class="card-content">'
