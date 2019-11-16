@@ -51,6 +51,12 @@ $card-link-color-dark: darken(#ffd8a6, 30%);
       bottom: 0;
       width: 400px;
       height: 225px;
+
+      &.lazy {
+        background-color: #607d8b;
+        background-image: linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.5) 60%);
+        background-size: 50px 50px;
+      }
     }
 
     .card-title {
@@ -87,7 +93,6 @@ $card-link-color-dark: darken(#ffd8a6, 30%);
     }
     background-color: inherit;
     border-top: 1px solid rgba(160,160,160,.2);
-    position: relative;
     padding: 16px $card-padding;
 
     a:not(.btn):not(.btn-large):not(.btn-floating) {
